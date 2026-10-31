@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductItem } from "./ProductItem";
 
-export function GetAllProducts({ products }) {
+export function GetAllProducts({ products, callbackSetHandlerForm }) {
   const [isAsending, setIsAsending] = useState({ order: true, key: "" });
   // const sortedProducts = products.sort((a, b) => {
   //   if (isAsending) {
@@ -84,6 +84,7 @@ export function GetAllProducts({ products }) {
                 key={producto.id}
                 id={producto.id}
                 producto={producto}
+                callbackSetHandlerForm={callbackSetHandlerForm}
               />
             ))
           ) : (
