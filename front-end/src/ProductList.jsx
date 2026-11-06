@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { ProductItem } from "./ProductItem";
 
-export function GetAllProducts({ products, callbackSetHandlerForm }) {
+export function GetAllProducts({ products, onEdit, onRemove }) {
   const [isAsending, setIsAsending] = useState({ order: true, key: "" });
-  // const sortedProducts = products.sort((a, b) => {
-  //   if (isAsending) {
-  //     return a.nombre.localeCompare(b.nombre);
-  //   } else {
-  //     return b.nombre.localeCompare(a.nombre);
-  //   }
-  // });
-
+  
   const sortedProducts = products.sort((a, b) => {
     return setPredicatedSort(
       a[isAsending.key],
@@ -46,7 +39,9 @@ export function GetAllProducts({ products, callbackSetHandlerForm }) {
       <table>
         <thead>
           <tr>
-            <th>#</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
+            <th>Id</th>
             <th
               onClick={(evt) =>
                 setIsAsending({ order: !isAsending, key: "nombre" })
@@ -84,7 +79,8 @@ export function GetAllProducts({ products, callbackSetHandlerForm }) {
                 key={producto.id}
                 id={producto.id}
                 producto={producto}
-                callbackSetHandlerForm={callbackSetHandlerForm}
+                onEdit={onEdit}
+                onRemove={onRemove}
               />
             ))
           ) : (
